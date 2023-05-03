@@ -1,8 +1,10 @@
 import Image from "next/image"
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { MdArrowDropUp } from "react-icons/md";
-import { ArrowUp, EmptyBasket, FullBasket } from "../global/Icons";
+import { ArrowUp, DarkMode, EmptyBasket, FullBasket, LightMode } from "./Icons";
+import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
+import Button from "./Button";
 
 const CartButton = () => {
     return (
@@ -41,12 +43,12 @@ const Navbar = () => {
             link: '#',
         },
         {
-            label: 'Menu 6',
-            link: '#',
+            label: 'Register',
+            link: '/register',
         },
         {
-            label: 'Menu 7',
-            link: '#',
+            label: 'Login',
+            link: '/login',
         },
     ];
 
@@ -67,13 +69,47 @@ const Navbar = () => {
         };
     }, [menuRef]);
 
+    const { route } = useRouter();
+    const [authNav, setAuthNav] = useState("");
+
+    useEffect(() => {
+        if (route == "/register" || route == "/login") {
+            setAuthNav("hidden");
+        }
+    }, [route]);
+
+
+    const { theme, setTheme } = useTheme();
+    const router = useRouter();
+
+    useEffect(() => {
+        // Update theme state on client-side to prevent hydration errors
+        if (typeof window !== 'undefined') {
+            setTheme(localStorage.getItem('theme') || 'light');
+        }
+    }, []);
+
+    const handleThemeChange = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
+
     return (
-        <div className="py-4 border border-slate-400 bg-white">
+        <div className={`py-4 border border-slate-400 dark:border-slate-800 bg-white dark:bg-slate-800 ${authNav}`}>
             <nav className="container mx-auto flex items-center justify-between flex-wrap">
-                <div className="flex items-center flex-shrink-0 mr-6 backdrop-blur-md">
-                    <span className="font-semibold text-xl tracking-tight font-righteous text-4xl">MyBrand</span>
+                <div className="flex items-center flex-shrink-0 gap-2 mr-6 backdrop-blur-md">
+                    <FullBasket fontSize={40} />
+                    <span className="font-semibold tracking-tight font-righteous text-4xl">  Upabhog</span>
                 </div>
                 <div className="flex items-center gap-3">
+                    <button onClick={handleThemeChange} >
+                        {
+                            theme == "light" &&
+                            <DarkMode fontSize={25} /> ||
+                            <LightMode fontSize={25} />
+                        }
+                    </button>
                     <CartButton />
                     <div
                         onClick={() => setShowMenu(!showMenu)} // Toggle the state to show/hide the menu
@@ -82,11 +118,11 @@ const Navbar = () => {
                     >
                         <Image src={'/../public/avatar.png'} width={40} height={40} className="border border-slate-950 rounded-full" />
                         {showMenu && (
-                            <div className="absolute top-12 -right-3 w-56 bg-white border border-gray-300 rounded-lg shadow-md z-10">
+                            <div className="absolute top-12 -right-3 w-56 bg-white dark:bg-slate-800 shadow-lg rounded-lg shadow-md z-10">
                                 <nav>
                                     <ul className="flex flex-col">
                                         {menuItems.map((menuItem, index) => (
-                                            <li key={index} className={`min-h-[40px] flex items-center hover:bg-purple-100`}>
+                                            <li key={index} className={`min-h-[40px] flex items-center hover:bg-purple-100 dark:hover:bg-slate-900`}>
                                                 <Link href={menuItem.link} className={`w-full`}>
                                                     <span className='px-3'>{menuItem.label}</span>
                                                 </Link>

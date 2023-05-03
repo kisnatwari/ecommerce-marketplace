@@ -7,6 +7,8 @@ import {
     MdStar as FullStar,
     MdStarHalf as HalfStar,
     MdStarBorder as EmptyStar,
+    MdDarkMode as DarkMode,
+    MdLightMode as LightMode,
 } from 'react-icons/md'
 
 import {
@@ -25,5 +27,7 @@ export {
     HalfStar,
     EmptyStar,
     ShowPassword,
-    HidePassword
+    HidePassword,
+    DarkMode,
+    LightMode
 }

@@ -25,7 +25,7 @@ const VideoBackground = () => {
                 <h1 className='text-white text-4xl font-bold mb-4 text-center'>Shop Local, Support Local Businesses</h1>
                 <h2 className='text-white text-md font-medium mb-8 text-center'>Discover unique and authentic products from local businesses in your community <br /> and help support your local economy</h2>
                 <form className='bg-white flex items-center rounded-full py-2 px-4 w-1/2 mb-7'>
-                    <input className='rounded-md bg-white w-full py-2 px-4 mr-2 text-gray-700 leading-tight focus:outline-none' id='search' type='text' placeholder='Search Products, Vendors.......' />
+                    <input className='rounded-md bg-white w-full py-2 px-4 mr-2 text-gray-700 leading-tight focus:outline-none border-0 focus:border-0' id='search' type='text' placeholder='Search Products, Vendors.......' />
                 </form>
                 <div className="relative">
                     <button className="px-6 py-3 bg-gray-300 rounded-md flex items-center justify-center gap-2">
