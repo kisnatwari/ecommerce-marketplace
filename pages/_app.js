@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider enableSystem={true} attribute="class">
       <NextNProgress />
-      <div className='min-h-screen flex flex-col w-full'>
+      <div className='h-screen overflow-auto flex flex-col w-full'>
         <Navbar />
         <div className="flex grow w-full dark:bg-primary-900 ">
           <Component {...pageProps} />

@@ -73,7 +73,7 @@ const Navbar = () => {
     const [authNav, setAuthNav] = useState("");
 
     useEffect(() => {
-        if (route == "/register" || route == "/login") {
+        if (route == "/register" || route == "/login" || route == "/seller/register") {
             setAuthNav("hidden");
         }
     }, [route]);
