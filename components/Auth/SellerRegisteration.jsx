@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Input from "./Input";
+import Button from '../global/Button';
 
 const Step1 = () => {
     const [profileBlob, setProfileBlob] = useState(null);
@@ -114,7 +115,9 @@ const SellerRegisteration = () => {
                         <input type="text" placeholder='Ward/Tole/Chok name' className='dark:bg-slate-700 border-0 rounded-md' />
                     </div>
                 </div>
-
+                <div className="text-end">
+                    <Button variant='indigo-dark' className='border-0'>Register Shop</Button>
+                </div>
             </div>
             <p className="text-slate-300 text-sm text-end flex justify-between flex-wrap flex-row-reverse">
                 <Link href={"/login"}>Already have an account? Login</Link>
